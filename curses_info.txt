@@ -15,7 +15,7 @@ if __name__ == '__main__':
     curses.wrapper(main)
 ```
 
-
+for elem, index in tab.XXXX
 
 # Randoms
 
