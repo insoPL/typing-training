@@ -15,7 +15,8 @@ def main(stdscr):
     if curses.has_colors():
         # height, width = stdscr.getmaxyx()
         lib = Library()
-        tracker = Tracker(TextObject(lib.getrandom(0)))
+        lib.createdefault()
+        tracker = Tracker(TextObject(lib.getrandom({1, 2})))
         tracker.start_tracking(stdscr)
         tracker.summarize(stdscr)
         blocking_exit(stdscr)

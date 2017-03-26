@@ -25,6 +25,7 @@ Use 'test.py' as an entry point
 1. Make full argparse thing
 2. Design modes: (quick random, quick DIFF, choose by id, non-stop-mode, support for long text)
 3. Print short representation of current library
+4. Merging default with already created
 
 
 # Components
