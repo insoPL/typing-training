@@ -1,11 +1,17 @@
 # Main idea / What is does?
 
-Tool/Game providing a way to practise typing without looking at the keyboard (speed, correctness also).
+Tool/Game providing a way to practise typing without looking at the keyboard or just speed and correctness.
 
 
 # How to run?
 
-TBD
+**in development, so keep in mind that whole project can change dramaticly**
+
+Clone or fork this repo. Both python 2.X and 3.X should work. (Tested under linux, dunno if windows can handle colors in cmd)
+Use 'test.py' as an entry point
+
+    $ python3 test.py
+
 
 # Functionality
 

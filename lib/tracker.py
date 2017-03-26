@@ -23,19 +23,19 @@ Also prints summary of the game"""
         keys = d['typedkeys']
         misses = d['misses']
 
-        stdscr.addch('#', curses.color_pair(1))
+        stdscr.addch(ord('#'), curses.color_pair(1))
         stdscr.addstr('Missed chars = {}\n'.format(misses))
 
-        stdscr.addch('#', curses.color_pair(1))
+        stdscr.addch(ord('#'), curses.color_pair(1))
         stdscr.addstr('Typed chars  = {}\n'.format(keys))
 
-        stdscr.addch('#', curses.color_pair(1))
+        stdscr.addch(ord('#'), curses.color_pair(1))
         stdscr.addstr('Accuracy     = {}%\n'.format((keys - misses) * 100 // keys))
 
-        stdscr.addch('#', curses.color_pair(1))
+        stdscr.addch(ord('#'), curses.color_pair(1))
         stdscr.addstr('Time elapsed = {}s\n'.format(t))
 
-        stdscr.addch('#', curses.color_pair(1))
+        stdscr.addch(ord('#'), curses.color_pair(1))
         stdscr.addstr('Keys_per_min = {}\n'.format((keys * 60) // t))
 
         stdscr.refresh()

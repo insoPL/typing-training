@@ -18,8 +18,8 @@ class TextObject(object):
         for i, char in enumerate(self.text):
             if char not in '\n\r\t':
                 color = self.colorsarray[i]
-                stdscr.addch(char, curses.color_pair(color))
-        stdscr.addch('\n')
+                stdscr.addch(ord(char), curses.color_pair(color))
+        stdscr.addch(ord('\n'))
         stdscr.refresh()
 
     def cleanchar(self, index):

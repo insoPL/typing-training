@@ -41,7 +41,7 @@ class Library(object):
             },
             {
                 'difficulty': 1,
-                'text': "Raw emotion, pure devotion. They will testify. And our memory will endure for all time. Never hiding, no dividing. Let them witness us move as one now. Show no mercy, let the world see. We're invincible. Show them nothing is beyond our control. Take it higher, our desire. Will determine what we’ve become now"
+                'text': "Raw emotion, pure devotion. They will testify. And our memory will endure for all time. Never hiding, no dividing. Let them witness us move as one now. Show no mercy, let the world see. We're invincible. Show them nothing is beyond our control. Take it higher, our desire. Will determine what we've become now"
             },
             {
                 'difficulty': 2,
@@ -52,7 +52,9 @@ class Library(object):
                 'text': '#En0rm0u$11'
             }
         ]
-        with open(self._path, mode='w', encoding='utf-8') as f:
+        # with open(self._path, mode='w', encoding='utf-8') as f:
+        # without encoding cuz python2
+        with open(self._path, mode='w') as f:
             json.dump(
                 defaultlist,
                 f,
@@ -62,7 +64,9 @@ class Library(object):
             )
 
     def load(self):
-        with open(self._path, encoding='utf-8') as f:
+        # with open(self._path, encoding='utf-8') as f:
+        # without encoding cuz python2
+        with open(self._path) as f:
             self.list = json.load(f)
             if type(self.list) is not list:
                 raise TypeError('Loaded file is not a list: {}'.format(type(self.list)))
