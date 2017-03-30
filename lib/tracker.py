@@ -1,6 +1,7 @@
 import time
 import curses
 import math
+from lib.dict import Dict
 
 
 class Tracker(object):
@@ -10,12 +11,12 @@ Also prints summary of the game"""
 
     def __init__(self, Textobj):
         self.textobj = Textobj
-        self.stats = {
+        self.stats = Dict({
             'misses': 0,
             'typedkeys': 0,
             'starttime': None,
             'finishtime': None
-        }
+        })
 
     def summarize(self, stdscr):
         d = self.stats
@@ -51,11 +52,11 @@ Also prints summary of the game"""
             self.textobj.display(stdscr)
 
             key = stdscr.getkey()
-            self.stats['typedkeys'] += 1
+            self.stats.typedkeys += 1
 
             # Start time after first typed char
-            if self.stats['starttime'] is None:
-                self.stats['starttime'] = time.time()
+            if self.stats.starttime is None:
+                self.stats.starttime = time.time()
 
             # correct
             if self.textobj.text[ptr] == key:
@@ -74,11 +75,11 @@ Also prints summary of the game"""
             else:
                 self.textobj.wrongchar(ptr)
                 ptr += 1
-                self.stats['misses'] += 1
+                self.stats.misses += 1
 
             # Highlight current character
             self.textobj.currentchar(ptr)
 
-        self.stats['finishtime'] = time.time()
+        self.stats.finishtime = time.time()
 
         self.textobj.display(stdscr)

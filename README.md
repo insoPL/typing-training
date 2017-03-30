@@ -26,7 +26,7 @@ Use 'test.py' as an entry point
 2. Design modes: (quick random, quick DIFF, choose by id, non-stop-mode, support for long text)
 3. Print short representation of current library
 4. Merging default with already created
-
+5. def gettextbyid(self, id): NEW
 
 # Components
 

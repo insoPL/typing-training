@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import argparse
+
+import curses
+from lib.library import Library
+from lib.textobject import TextObject
+from lib.tracker import Tracker
+
+
+def blocking_exit(stdscr):
+    stdscr.addstr('To proceed press "BACKSPACE" key...', curses.color_pair(3))
+    stdscr.refresh()
+    while 'KEY_BACKSPACE' != stdscr.getkey():
+        pass
+
+
+def main(content):
+    def main_inner(stdscr):
+        if curses.has_colors():
+            # height, width = stdscr.getmaxyx()
+            lib = Library()
+            # lib.createdefault()
+            tracker = Tracker(content(lib))
+            tracker.start_tracking(stdscr)
+            tracker.summarize(stdscr)
+            blocking_exit(stdscr)
+        else:
+            stdscr.addstr('This terminal does not support colors')
+            stdscr.refresh()
+            stdscr.getkey()
+    return main_inner
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+
+    # parser.add_argument(
+    #     'url',
+    #     help=""
+    # )
+    parser.add_argument(
+        '-d',
+        '--difficulty',
+        help="",
+        type=int,
+        nargs='+',
+        choices={1, 2, 3}
+    )
+    parser.add_argument(
+        '--id',
+        help="",
+        type=int
+    )
+
+    args = parser.parse_args()
+
+    # Handle text under given id
+    if args.id:
+        curses.wrapper(main(
+            lambda lib: TextObject(lib.gettextbyid(args.id))
+        ))
+
+    if args.difficulty is not None:
+        args.difficulty = set(args.difficulty)
+
+    # print(args.difficulty)
+    # print(args.id)

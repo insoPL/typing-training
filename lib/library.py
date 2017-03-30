@@ -1,47 +1,22 @@
 import random
 import json
 import os
+from lib.dict import Dict
 
 
 class Library(object):
     def __init__(self):
-        self.__default = Default()
-        self._dirpath = os.path.dirname(os.path.realpath(__file__))
-        self._path = os.path.join(self._dirpath, self.__default.filename)
-        self.list = None
+        self.list = Archive().data
 
-        # check if file exists
-        if os.path.exists(self._path):
-            return
-
-        # create default file
-        self.createdefault()
-
-    def createdefault(self):
-        # with open(self._path, mode='w', encoding='utf-8') as f:
-        # without encoding cuz python2
-        with open(self._path, mode='w') as f:
-            json.dump(
-                self.__default.getdefaultlist(),
-                f,
-                ensure_ascii=False,
-                indent=4,
-                sort_keys=True
-            )
-
-    def load(self):
-        # with open(self._path, encoding='utf-8') as f:
-        # without encoding cuz python2
-        with open(self._path) as f:
-            self.list = json.load(f)
-            if type(self.list) is not list:
-                raise TypeError('Loaded file is not a list: {}'.format(type(self.list)))
+    def gettextbyid(self, id):
+        """Returns text from Library list[id]"""
+        if -len(self.list) <= id and id < len(self.list):
+            return self.list[id]['text']
+        else:
+            return "Wrong index XD"
 
     def getrandom(self, difficulty=None):
-        # Load the file if it is not loaded
-        if self.list is None:
-            self.load()
-
+        """Returns random text from Library list"""
         # transform param to set
         if type(difficulty) is not set:
             # maybe its iterable
@@ -50,15 +25,70 @@ class Library(object):
             # its not iterable
             except TypeError:
                 difficulty = {difficulty}
-
         # get list of wanted texts
         textslist = [
             elem['text'] for elem in self.list
             if difficulty is None or
             elem['difficulty'] in difficulty
         ]
-
         return textslist[random.randrange(0, len(textslist))]
+
+
+class Archive(object):
+    def __init__(self):
+        self.data = None
+        self.__default = Default()
+        self._dirpath = os.path.dirname(os.path.realpath(__file__))
+        self._path = os.path.join(self._dirpath, self.__default.filename)
+
+        # check if file exists
+        if not os.path.exists(self._path):
+            self.data = self.__default.getdefaultlist()
+            # create default file
+            self.dump()
+        else:
+            # Load the file
+            self.load()
+            # Merge with existing file
+            self.mergewithdefault()
+            # Save changes
+            self.dump()
+
+    def mergewithdefault(self):
+        # texts already in file
+        texts = [dic['text'] for dic in self.data]
+        for dic in self.__default.getdefaultlist():
+            # found new in default list
+            if dic['text'] not in texts:
+                # add new text
+                self.data.append(
+                    # add default values if keys are missing
+                    self.__default.correctdict(dic)
+                )
+
+    def dump(self):
+        if self.data is None:
+            raise Exception('Nothing to dump: list in library is empty')
+        with open(self._path, mode='w') as f:
+            json.dump(
+                self.data,
+                f,
+                ensure_ascii=False,
+                indent=4,
+                sort_keys=True
+            )
+
+    def load(self):
+        """Read file(list of dicts) and
+        process every dict by saving only usefull keys and
+        setting default keys if missing"""
+        with open(self._path) as f:
+            self.data = json.load(f)
+            if type(self.data) is not list:
+                raise TypeError('Loaded file is not a list: {}'.format(type(self.data)))
+            # make sure its in right format
+            for i, dic in enumerate(self.data):
+                self.data[i] = self.__default.correctdict(dic)
 
 
 class Default(object):
@@ -67,6 +97,12 @@ class Default(object):
     def __init__(self):
         self.filename = '.typingtraininglib.json'
         self.__defaultlist = []
+
+    def correctdict(self, dic):
+        dic = Dict(dic)
+        dic.difficulty = dic.get('difficulty', 0)
+        dic.text = dic.get('text', 'EMPTY')
+        return dic
 
     def getdefaultlist(self):
         self.__quickAdd(
@@ -96,11 +132,9 @@ class Default(object):
         self.__quickAdd(
             text="#En0rm0u$11",
             difficulty=2)
-
         return self.__defaultlist
 
     def __quickAdd(self, **kwargs):
         """This function allows adding new fields (like 'text') without need of changing older texts"""
-        self.__defaultlist.append({})
-        self.__defaultlist[-1]['difficulty'] = kwargs.get('difficulty', 0)
-        self.__defaultlist[-1]['text'] = kwargs.get('text', 'EMPTY')
+        dic = self.correctdict(kwargs)
+        self.__defaultlist.append(dic)
