@@ -47,7 +47,14 @@ Use 'test.py' as an entry point
     + **starttracking**: *stdscr -> None* - contains 'game loop'; changes elements in textobj accordingly to correctness of typed characters by the user; also gathers informations and stores them in *stats*
 
 3. **Library**:
+    + **gettextbyid**:
+    + **getrandom**: *difficulty -> str* - returns random text filtered by difficulty. Difficulty should be int or iterable object of int's
+
+4. **Archive**:
     - **dirpath**: *str* - absolute path to script directory
     - **path**: *str* - absolute path to file with texts
     + **load**: *() -> None* - loads file with texts (file initialized together with class)
-    + **getrandom**: *difficulty -> str* - returns random text filtered by difficulty. Difficulty should be int or iterable object of int's
+    
+
+5. **Default**:
+

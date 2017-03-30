@@ -8,7 +8,7 @@ class Library(object):
     def __init__(self):
         self.list = Archive().data
 
-    def gettextbyid(self, id):
+    def get_text_by_id(self, id):
         """Returns text from Library list[id]"""
         if -len(self.list) <= id and id < len(self.list):
             return self.list[id]['text']
@@ -43,21 +43,21 @@ class Archive(object):
 
         # check if file exists
         if not os.path.exists(self._path):
-            self.data = self.__default.getdefaultlist()
+            self.data = self.__default.get_default_list()
             # create default file
             self.dump()
         else:
             # Load the file
             self.load()
             # Merge with existing file
-            self.mergewithdefault()
+            self.merge_with_default()
             # Save changes
             self.dump()
 
-    def mergewithdefault(self):
+    def merge_with_default(self):
         # texts already in file
         texts = [dic['text'] for dic in self.data]
-        for dic in self.__default.getdefaultlist():
+        for dic in self.__default.get_default_list():
             # found new in default list
             if dic['text'] not in texts:
                 # add new text
@@ -104,37 +104,37 @@ class Default(object):
         dic.text = dic.get('text', 'EMPTY')
         return dic
 
-    def getdefaultlist(self):
-        self.__quickAdd(
+    def get_default_list(self):
+        self.__quick_add(
             text="You will all be running. In a world you cannot hide. And the end is coming. For the lemming standing in line.",
             difficulty=0)
-        self.__quickAdd(
+        self.__quick_add(
             text="Overcoming. Let the fury build inside. It could all be broken. If you only opened your eyes",
             difficulty=0)
-        self.__quickAdd(
+        self.__quick_add(
             text="def __init__(self, arg): super(ClassName, self).__init__()",
             difficulty=1)
-        self.__quickAdd(
+        self.__quick_add(
             text="for ind4x, v4L in enumerate(2 ** _285 for _285 in l492)",
             difficulty=1)
-        self.__quickAdd(
+        self.__quick_add(
             text="wariancja V(X) = E(X^2) - E(X)^2",
             difficulty=1)
-        self.__quickAdd(
+        self.__quick_add(
             text="As I survey the chaos, taking in the lack of raw humanity. It's as if the entire world's fallen in love with their insanity. Hear the innocent voices scream. As their tormentors laugh through all of it. No forgiveness from all I've seen. A degradation I cannot forget",
             difficulty=1)
-        self.__quickAdd(
+        self.__quick_add(
             text="Raw emotion, pure devotion. They will testify. And our memory will endure for all time. Never hiding, no dividing. Let them witness us move as one now. Show no mercy, let the world see. We're invincible. Show them nothing is beyond our control. Take it higher, our desire. Will determine what we've become now",
             difficulty=1)
-        self.__quickAdd(
+        self.__quick_add(
             text="qo29*328s@xcsa^0-[]-;-/+1421d()ED#b6X&x*^@",
             difficulty=2)
-        self.__quickAdd(
+        self.__quick_add(
             text="#En0rm0u$11",
             difficulty=2)
         return self.__defaultlist
 
-    def __quickAdd(self, **kwargs):
+    def __quick_add(self, **kwargs):
         """This function allows adding new fields (like 'text') without need of changing older texts"""
         dic = self.correctdict(kwargs)
         self.__defaultlist.append(dic)

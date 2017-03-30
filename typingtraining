@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # Handle text under given id
     if args.id:
         curses.wrapper(main(
-            lambda lib: TextObject(lib.gettextbyid(args.id))
+            lambda lib: TextObject(lib.get_text_by_id(args.id))
         ))
 
     if args.difficulty is not None:
