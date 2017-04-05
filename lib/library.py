@@ -15,23 +15,25 @@ class Library(object):
         else:
             return "Wrong index XD"
 
-    def getrandom(self, difficulty=None):
+    def getrandom(self, difficulties=set()):
         """Returns random text from Library list"""
         # transform param to set
-        if type(difficulty) is not set:
+        if type(difficulties) is not set:
             # maybe its iterable
             try:
-                difficulty = set(difficulty)
+                difficulties = set(difficulties)
             # its not iterable
             except TypeError:
-                difficulty = {difficulty}
+                difficulties = {difficulties}
         # get list of wanted texts
         textslist = [
-            elem['text'] for elem in self.list
-            if difficulty is None or
-            elem['difficulty'] in difficulty
+            elem.text for elem in self.list
+            if len(difficulties) == 0 or None in difficulties or elem.difficulty in difficulties
         ]
-        return textslist[random.randrange(0, len(textslist))]
+        if len(textslist) > 0:
+            return textslist[random.randrange(0, len(textslist))]
+        else:
+            return "*No records*"
 
 
 class Archive(object):
