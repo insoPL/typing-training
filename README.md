@@ -27,6 +27,7 @@ Use 'test.py' as an entry point
 3. Print short representation of current library
 4. Merging default with already created
 5. def gettextbyid(self, id): NEW
+6. Random characters depending on difficulty
 
 # Components
 

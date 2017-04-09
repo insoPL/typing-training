@@ -42,16 +42,23 @@ if __name__ == '__main__':
     parser.add_argument(
         '-d',
         '--difficulty',
-        help="",
+        help="Specify difficulty: example -d 1 2",
         type=int,
         nargs='+',
-        choices={1, 2, 3}
+        choices={0, 1, 2},
+        default=[0, 1, 2]
     )
     parser.add_argument(
         '--id',
-        help="",
+        help="Print text under given id: can be negative: example (for last one) --id -1 ",
         type=int
     )
+    # parser.add_argument(
+    #     '--random-chars',
+    #     '-r',
+    #     action="store_true",
+    #     help="Print random characters depending on difficulty"
+    # )
 
     args = parser.parse_args()
 
@@ -63,6 +70,10 @@ if __name__ == '__main__':
         curses.wrapper(main(
             lambda lib: TextObject(lib.get_text_by_id(args.id))
         ))
+    # elif args.random_chars:
+    #     curses.wrapper(main(
+    #         lambda lib: TextObject(???)
+    #     ))
     else:  # default
         curses.wrapper(main(
             lambda lib: TextObject(lib.getrandom(difficulties=args.difficulty))
