@@ -63,14 +63,14 @@ if __name__ == '__main__':
 
     # Handle text under given id
     if args.id:
-        curses.wrapper(main(
-            lambda lib: TextObject(lib.get_text_by_id(args.id))
-        ))
+        f = lambda lib: lib.get_text_by_id(args.id)
     # elif args.random_chars:
     #     curses.wrapper(main(
     #         lambda lib: TextObject(???)
     #     ))
     else:  # default
-        curses.wrapper(main(
-            lambda lib: TextObject(lib.getrandom(difficulties=args.difficulty))
-        ))
+        f = lambda lib: lib.getrandom(difficulties=args.difficulty)
+    # start
+    curses.wrapper(main(
+        lambda lib: TextObject(f(lib))
+    ))
