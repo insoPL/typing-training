@@ -1,0 +1,42 @@
+[
+    {
+        "difficulty": 0,
+        "text": "class Header extends Component { render () { return <h1>{this.props.children}</h1>; } }"
+    },
+    {
+        "difficulty": 1,
+        "text": "def __init__(self, arg): super(ClassName, self).__init__()"
+    },
+    {
+        "difficulty": 1,
+        "text": "for ind4x, v4L in enumerate(2 ** _285 for _285 in l492)"
+    },
+    {
+        "difficulty": 1,
+        "text": "wariancja V(X) = E(X^2) - E(X)^2"
+    },
+    {
+        "difficulty": 1,
+        "text": "P: class of problems solvable in polynomial time"
+    },
+    {
+        "difficulty": 1,
+        "text": "NP: class of decision problems solvable in nondeterministic polynomial time. Nondeterministic here means: we can make a guess (instead of considering all possibilities) and this guess is always good (if 'yes' answer exists). In other words: if the answer is 'yes' then given a solution we can check it in polynomial time"
+    },
+    {
+        "difficulty": 1,
+        "text": "NP-hard: problem X <- NP-hard if every problem from NP can be reduced to X. This means: X is at least as hard as every problem in NP"
+    },
+    {
+        "difficulty": 1,
+        "text": "NP-complete: class of problems both in NP and NP-hard"
+    },
+    {
+        "difficulty": 2,
+        "text": "qo29*328s@xcsa^0-[]-;-/+1421d()ED#b6X&x*^@"
+    },
+    {
+        "difficulty": 2,
+        "text": "#En0rm0u$11"
+    }
+]
