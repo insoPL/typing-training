@@ -22,12 +22,10 @@ Use 'test.py' as an entry point
 
 # ToDo
 
-1. Make full argparse thing
-2. Design modes: (quick random, quick DIFF, choose by id, non-stop-mode, support for long text)
-3. Print short representation of current library
-4. Merging default with already created
-5. def gettextbyid(self, id): NEW
-6. Random characters depending on difficulty
+1. Long text
+2. non-stop-mode
+3. Merging default with already created
+4. Random characters depending on difficulty
 
 # Components
 

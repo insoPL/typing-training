@@ -35,10 +35,6 @@ def main(content):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    # parser.add_argument(
-    #     'url',
-    #     help=""
-    # )
     parser.add_argument(
         '-d',
         '--difficulty',
@@ -78,6 +74,3 @@ if __name__ == '__main__':
         curses.wrapper(main(
             lambda lib: TextObject(lib.getrandom(difficulties=args.difficulty))
         ))
-
-    # print(args.difficulty)
-    # print(args.id)
