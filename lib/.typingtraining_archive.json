@@ -32,6 +32,18 @@
         "text": "NP-complete: class of problems both in NP and NP-hard"
     },
     {
+        "difficulty": 1,
+        "text": "If A reduces to B then this means B is at least as hard as A"
+    },
+    {
+        "difficulty": 1,
+        "text": "Reduction from problem A to B === change input A to equivalent input B (equivalent means does not change result)"
+    },
+    {
+        "difficulty": 2,
+        "text": "How to prove that X is NP-hard? First show that X is NP. Then take any Y from NP-hard problems and reduce Y to X. Which tells us X is at least as hard as Y and Y is NP-hard so X is also NP-hard. Example: 3-SAT is NP-hard, convert any 3-SAT formula to Mario's map/board => playing Mario is NP-hard"
+    },
+    {
         "difficulty": 2,
         "text": "qo29*328s@xcsa^0-[]-;-/+1421d()ED#b6X&x*^@"
     },

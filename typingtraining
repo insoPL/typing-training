@@ -36,6 +36,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
+        'text_id',
+        help="Print text under given id: can be negative: -1 for the last one",
+        type=int,
+        nargs='?'
+    )
+
+    parser.add_argument(
         '-d',
         '--difficulty',
         help="Specify difficulty: example -d 1 2",
@@ -44,11 +51,11 @@ if __name__ == '__main__':
         choices={0, 1, 2},
         default=[0, 1, 2]
     )
-    parser.add_argument(
-        '--id',
-        help="Print text under given id: can be negative: example (for last one) --id -1 ",
-        type=int
-    )
+    # parser.add_argument(
+    #     '--id',
+    #     help="Print text under given id: can be negative: example (for last one) --id -1 ",
+    #     type=int
+    # )
     # parser.add_argument(
     #     '--random-chars',
     #     '-r',
@@ -62,15 +69,22 @@ if __name__ == '__main__':
         args.difficulty = set(args.difficulty)
 
     # Handle text under given id
-    if args.id:
-        f = lambda lib: lib.get_text_by_id(args.id)
+    # if args.id is not None or args.text_id is not None:
+    if args.text_id is not None:
+        f = lambda lib: lib.get_text_by_id(args.text_id)
     # elif args.random_chars:
-    #     curses.wrapper(main(
-    #         lambda lib: TextObject(???)
-    #     ))
+    #     f = lambda lib: lib.???
     else:  # default
         f = lambda lib: lib.getrandom(difficulties=args.difficulty)
+
     # start
-    curses.wrapper(main(
-        lambda lib: TextObject(f(lib))
-    ))
+    try:
+        curses.wrapper(main(
+            lambda lib: TextObject(f(lib))
+        ))
+        print('GG WP!')
+    except KeyboardInterrupt:  # exit the game
+        pass
+    finally:
+        # print('GG WP!')
+        pass
