@@ -56,12 +56,12 @@ if __name__ == '__main__':
     #     help="Print text under given id: can be negative: example (for last one) --id -1 ",
     #     type=int
     # )
-    # parser.add_argument(
-    #     '--random-chars',
-    #     '-r',
-    #     action="store_true",
-    #     help="Print random characters depending on difficulty"
-    # )
+    parser.add_argument(
+        '--random-chars',
+        '-r',
+        action="store_true",
+        help="Print random characters depending on difficulty"
+    )
 
     args = parser.parse_args()
 
@@ -72,8 +72,8 @@ if __name__ == '__main__':
     # if args.id is not None or args.text_id is not None:
     if args.text_id is not None:
         f = lambda lib: lib.get_text_by_id(args.text_id)
-    # elif args.random_chars:
-    #     f = lambda lib: lib.???
+    elif args.random_chars:
+        f = lambda lib: lib.get_random_chars(difficulties=args.difficulty)
     else:  # default
         f = lambda lib: lib.getrandom(difficulties=args.difficulty)
 

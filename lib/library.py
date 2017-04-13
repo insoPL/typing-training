@@ -29,6 +29,33 @@ class Library(object):
         else:
             return "*No records*"
 
+    def get_random_chars(self, difficulties=set()):
+        """Returns random sequence of characters based on difficulties"""
+        # transform param to set
+        difficulties = self.__transform(difficulties)
+
+        def chars_range(a, z):  # [a, z]
+            return [chr(ord(a) + i) for i in range(ord(z) - ord(a) + 1)]
+        lchars = chars_range('a', 'z')
+        uchars = chars_range('A', 'Z')
+        digits = chars_range('0', '9')
+
+        chars = lchars  # base case
+        size = 40
+        if sum(difficulties) > 0:
+            chars += uchars
+            chars += digits
+        if sum(difficulties) > 1:
+            chars += Default.special_chars
+
+        res = []
+        import random
+        for i in range(size):
+            if random.randrange(5) == 0:  # randomly split with space
+                res.append(' ')
+            res.append(chars[random.randrange(len(chars))])
+        return "".join(res)
+
     def __transform(self, difficulties):
         """Transform difficulties param to set if needed"""
         if type(difficulties) is not set:
@@ -96,7 +123,9 @@ class Default(object):
     """Here we've got default info about file with texts"""
     filename = os.path.join('..', 'textlist.json')
     dirpath = os.path.dirname(os.path.realpath(__file__))
-    default_texts_filename = os.path.join(dirpath, '.typingtraining_archive.json')
+    texts_filename = os.path.join(dirpath, '.typingtraining_archive.json')
+
+    special_chars = """!@#$%^&*()_-=+{}[]|\:;"',<>./?"""
 
     def __new__(s):
         return None
@@ -120,5 +149,5 @@ class Default(object):
 
     @staticmethod
     def get_default_list():
-        with open(Default.default_texts_filename) as f:
+        with open(Default.texts_filename) as f:
             return Default.correctdata(json.load(f))

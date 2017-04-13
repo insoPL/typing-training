@@ -24,7 +24,6 @@ Use 'test.py' as an entry point
 
 1. Long text
 2. non-stop-mode
-3. Random characters depending on difficulty
 
 # Components
 
