@@ -8,9 +8,24 @@ Tool/Game providing a way to practise typing without looking at the keyboard or 
 **in development, so keep in mind that whole project can change dramaticly**
 
 Clone or fork this repo. Both python 2.X and 3.X should work. (Tested under linux, dunno if windows can handle colors in cmd)
-Use 'test.py' as an entry point
+Use 'typingtraining' as an entry point. Pick one:
 
-    $ python3 test.py
+    $ python3 typingtraining
+    $ python  typingtraining
+    $ ./typingtraining
+
+
+# How to use?
+
+## Options:
+1. without any : displays random text from textlist.json file
+2. -d or --difficulty [{0,1,2}, ...] : specify difficulty
+3. -r or --random-chars : displays bunch of random characters; without any difficulty set uses hardest mode; -d 0 uses just lowercase letters, -d 1 adds uppers and digits, -d 2 adds also specials
+
+## You can add your own texts manually by editing textlist.json
+If it does not exist then run typingtraining so it will create it for you. Delete that file if u messed with it too much.
+
+## If you need help or want to learn more: run with --help
 
 
 # Functionality
