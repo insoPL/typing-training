@@ -8,6 +8,12 @@ class Library(object):
     def __init__(self):
         self.list = Archive().data
 
+    def get_all(self, shorter=False):
+        return "\n".join(
+            ": ".join([str(i), val['text']])
+            for i, val in enumerate(self.list)
+        )
+
     def get_text_by_id(self, id):
         """Returns text from Library list[id]"""
         if -len(self.list) <= id and id < len(self.list):

@@ -62,8 +62,18 @@ if __name__ == '__main__':
         action="store_true",
         help="Print random characters depending on difficulty"
     )
+    parser.add_argument(
+        '--print-db',
+        action="store_true",
+        help="Show all available texts with their id and exit"
+    )
 
     args = parser.parse_args()
+
+    if args.print_db:
+        print(Library().get_all())
+        import sys
+        sys.exit(0)
 
     if args.difficulty is not None:
         args.difficulty = set(args.difficulty)
