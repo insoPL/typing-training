@@ -7,7 +7,7 @@ Tool/Game providing a way to practise typing without looking at the keyboard or 
 
 **in development, so keep in mind that whole project can change dramaticly**
 
-Clone or fork this repo. Both python 2.X and 3.X should work. Windows does not have curses module - only Linux or Mac. Use 'typingtraining' as an entry point. Pick one:
+Clone or fork this repo. Both python 2.X and 3.X should work. Windows does not have curses module - only Linux or Mac. In order to run this on Windows 10 take a look at (beta) BashOnWindows. Use 'typingtraining' as an entry point. Pick one:
 
     $ python3 typingtraining
     $ python  typingtraining
