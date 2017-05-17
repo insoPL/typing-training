@@ -40,6 +40,14 @@
         "text": "Reduction from problem A to B === change input A to equivalent input B (equivalent means does not change result)"
     },
     {
+        "difficulty": 1,
+        "text": "Las Vegas algorithm is a randomized algorithm that always gives correct result or informs about failure."
+    },
+    {
+        "difficulty": 1,
+        "text": "Monte Carlo algorithm is a randomized algorithm whose output may be incorrect with a certain (typically small) probability."
+    },
+    {
         "difficulty": 2,
         "text": "How to prove that X is NP-hard? First show that X is NP. Then take any Y from NP-hard problems and reduce Y to X. Which tells us X is at least as hard as Y and Y is NP-hard so X is also NP-hard. Example: 3-SAT is NP-hard, convert any 3-SAT formula to Mario's map/board => playing Mario is NP-hard"
     },
