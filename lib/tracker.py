@@ -64,7 +64,7 @@ Also prints summary of the game"""
                 ptr += 1
 
             # backspace
-            elif key == 'KEY_BACKSPACE':
+            elif key == 'KEY_BACKSPACE' or key == '\x7f':
                 if ptr > 0:
                     self.textobj.cleanchar(ptr - 1)
                     self.textobj.cleanchar(ptr)
