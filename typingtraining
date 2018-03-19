@@ -15,14 +15,14 @@ def blocking_exit(stdscr):
         print(stdscr.getkey())
 
 
-def main(content, non_stop_mode):
+def main(content, repeats):
     def main_inner(stdscr):
         if curses.has_colors():
             # height, width = stdscr.getmaxyx()
             lib = Library()
             # lib.createdefault()
             tracker = Tracker(content(lib))
-            repeats_counter = int(non_stop_mode)
+            repeats_counter = repeats
             while repeats_counter != 0:
                 tracker.start_tracking(stdscr)
                 tracker.textobj = content(lib)
