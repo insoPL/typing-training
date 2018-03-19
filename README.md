@@ -20,6 +20,7 @@ Clone or fork this repo. Both python 2.X and 3.X should work. Windows does not h
 1. without any : displays random text from textlist.json file
 2. -d or --difficulty [{0,1,2}, ...] : specify difficulty
 3. -r or --random-chars : displays bunch of random characters; without any difficulty set uses hardest mode; -d 0 uses just lowercase letters, -d 1 adds uppers and digits, -d 2 adds also specials
+4. -n or --non-stop-mode : repeats training defined amount of times, leave argument empty for inifnite mode
 
 ## You can add your own texts manually by editing textlist.json
 If it does not exist then run typingtraining so it will create it for you. Delete that file if u messed with it too much.
@@ -37,7 +38,6 @@ If it does not exist then run typingtraining so it will create it for you. Delet
 # ToDo
 
 1. Long text
-2. non-stop-mode
 
 # Components
 

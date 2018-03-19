@@ -11,18 +11,22 @@ from lib.tracker import Tracker
 def blocking_exit(stdscr):
     stdscr.addstr('To proceed press "BACKSPACE" key...', curses.color_pair(3))
     stdscr.refresh()
-    while 'KEY_BACKSPACE' != stdscr.getkey():
-        pass
+    while True:
+        print(stdscr.getkey())
 
 
-def main(content):
+def main(content, non_stop_mode):
     def main_inner(stdscr):
         if curses.has_colors():
             # height, width = stdscr.getmaxyx()
             lib = Library()
             # lib.createdefault()
             tracker = Tracker(content(lib))
-            tracker.start_tracking(stdscr)
+            repeats_counter = int(non_stop_mode)
+            while repeats_counter != 0:
+                tracker.start_tracking(stdscr)
+                tracker.textobj = content(lib)
+                repeats_counter -= 1
             tracker.summarize(stdscr)
             blocking_exit(stdscr)
         else:
@@ -67,6 +71,14 @@ if __name__ == '__main__':
         action="store_true",
         help="Show all available texts with their id and exit"
     )
+    parser.add_argument(
+        '--non-stop-mode',
+        '-n',
+        help="Repeats training defined amount of times, leave argument empty for inifnite mode",
+        type=int,
+        nargs='?',
+        default=1
+    )
 
     args = parser.parse_args()
 
@@ -87,10 +99,14 @@ if __name__ == '__main__':
     else:  # default
         f = lambda lib: lib.getrandom(difficulties=args.difficulty)
 
+    if args.non_stop_mode is None:
+        args.non_stop_mode = -1
+
     # start
     try:
         curses.wrapper(main(
-            lambda lib: TextObject(f(lib))
+            lambda lib: TextObject(f(lib)),
+            args.non_stop_mode
         ))
         print('GG WP!')
     except KeyboardInterrupt:  # exit the game
